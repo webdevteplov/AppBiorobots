@@ -88,3 +88,76 @@
 .coin_checkbox:checked + label::before {
     background-image: url("./icons/ico_checked.svg");
 }
+
+.modal {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    gap: 30px;
+}
+
+.wrapper-ico_coin {
+    display: flex;
+    flex-direction: row;
+    width: 53px;
+    height: 52px;
+    margin-top: 15px;
+}
+
+.ico_coin_big {
+}
+
+.wrapper-titles {
+    display: flex;
+    flex-direction: column;
+    gap: 23px;
+}
+
+.modal-title {
+    font-size: 32px;
+    line-height: 40px;
+    color: #212529;
+}
+
+.modal-sub_title {
+    font-size: 20px;
+    line-height: 32px;
+    font-weight: bold;
+    color: #4c5865;
+}
+
+/* .close_modal {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+} */
+
+.close_modal {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.close_modal::before,
+.close_modal::after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    display: block;
+    width: 16px;
+    height: 2px;
+    background: #ff7f22;
+}
+
+.close_modal::before {
+    transform: rotate(45deg);
+}
+
+.close_modal::after {
+    transform: rotate(-45deg);
+}
