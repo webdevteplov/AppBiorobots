@@ -1,0 +1,14 @@
+@import "./normalize.css";
+@import "./fonts.css";
+
+body {
+    background: linear-gradient(#26394d, #212529);
+    font-family: "Montserrat", sans-serif;
+    color: white;
+}
+
+#root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

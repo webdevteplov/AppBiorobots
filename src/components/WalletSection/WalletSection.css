@@ -1,0 +1,90 @@
+.wallet_section {
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+}
+
+.wrapper-wallet_section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.coins {
+    position: relative;
+    height: 20px;
+    margin-bottom: 24px;
+}
+
+.title {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 40px;
+    text-align: left;
+    margin-bottom: 60px;
+}
+
+.count_coins {
+    font-size: 24px;
+    line-height: 24px;
+    text-align: left;
+    color: #a3b8cc;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    margin-bottom: 44px;
+}
+
+.count_coins > span {
+    font-weight: bold;
+}
+
+.button-add_coin {
+    border-bottom: 1px solid #ff7f2280;
+    text-decoration: none;
+    color: #ff7f2280;
+    transition: 0.3s;
+    margin-right: 27px;
+}
+
+.button-add_coin:hover {
+    color: #ff5722;
+    border-bottom: 1px solid #ff5722;
+}
+
+.button-add_coin:active {
+    color: #ff7f22;
+    border-bottom: 1px solid #ff7f22;
+}
+
+.block-change_coins {
+    display: flex;
+    flex-direction: row;
+}
+
+.coin_checkbox {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+
+.coin_checkbox + label {
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
+}
+.coin_checkbox + label::before {
+    content: "";
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #a3b8cc;
+    margin-right: 12px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.coin_checkbox:checked + label::before {
+    background-image: url("./icons/ico_checked.svg");
+}
