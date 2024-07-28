@@ -3,8 +3,8 @@ import ico_coin from "./icons/ico_coin.svg";
 
 const Coin = ({ left, zIndex }) => {
     const divStyle = {
-        left: left,
-        zIndex: zIndex,
+        left,
+        zIndex,
         position: "absolute",
     };
     return <img className="coin" style={divStyle} src={ico_coin} alt="coin" />;

@@ -10,11 +10,28 @@ let left = -7; //css стили для картинок монет
 let zIndex = 0; //
 
 const WalletSection = ({ coins, setCoins }) => {
-    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const [coinsInWallet, setCoinsInWallet] = useState([]);
     const [earnFiveCoinsCheckboxChecked, setEarnFiveCoinsCheckboxChecked] =
         useState(false);
     const [noanForCountCoins, setNoanForCountCoins] = useState("монет");
+
+    const customStyleModal = {
+        overlay: {
+            backgroundColor: "rgba(0, 0, 0, 0.67)",
+            color: "black",
+        },
+        content: {
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            borderRadius: "10px",
+            background: "#fff",
+            width: "496px",
+            height: "240px",
+            margin: "auto",
+        },
+    };
 
     const handleChange = () => {
         setEarnFiveCoinsCheckboxChecked(!earnFiveCoinsCheckboxChecked);
@@ -49,12 +66,16 @@ const WalletSection = ({ coins, setCoins }) => {
             openModal();
             return;
         }
-        if (earnFiveCoinsCheckboxChecked == true) {
-            const fiveCoins = [];
+        if (earnFiveCoinsCheckboxChecked) {
+            const coinsToAdd = [];
             let keyForCoin = coinsInWallet.length;
-            const limitedCountCoins = 100 - coins;
+            const diffCoinsBetweenLimitedAndAllowed = 100 - coins;
+            let limitedCountCoins =
+                diffCoinsBetweenLimitedAndAllowed >= 5
+                    ? 5
+                    : diffCoinsBetweenLimitedAndAllowed;
 
-            for (let i = 0; i < 5; i++) {
+            for (let i = 0; i < limitedCountCoins; i++) {
                 left += 7;
                 zIndex -= 1;
                 keyForCoin += 1;
@@ -63,24 +84,15 @@ const WalletSection = ({ coins, setCoins }) => {
                     <Coin left={left} zIndex={zIndex} key={keyForCoin} />
                 );
 
-                fiveCoins.push(coin);
+                coinsToAdd.push(coin);
+
+                if (limitedCountCoins < 5) {
+                    openModal();
+                }
             }
 
-            if (limitedCountCoins < 5) {
-                const diffCoinsBetweenLimitedAndAllowed = fiveCoins.splice(
-                    0,
-                    limitedCountCoins
-                );
-                setCoins(coins + limitedCountCoins);
-                setCoinsInWallet([
-                    ...coinsInWallet,
-                    ...diffCoinsBetweenLimitedAndAllowed,
-                ]);
-                openModal();
-            } else {
-                setCoins(coins + 5);
-                setCoinsInWallet([...coinsInWallet, ...fiveCoins]);
-            }
+            setCoins(coins + limitedCountCoins);
+            setCoinsInWallet([...coinsInWallet, ...coinsToAdd]);
         } else {
             left += 7;
             zIndex -= 1;
@@ -97,11 +109,11 @@ const WalletSection = ({ coins, setCoins }) => {
     };
 
     const openModal = () => {
-        setModalIsOpen(true);
+        setIsModalOpen(true);
     };
 
     const closeModal = () => {
-        setModalIsOpen(false);
+        setIsModalOpen(false);
     };
 
     return (
@@ -121,25 +133,10 @@ const WalletSection = ({ coins, setCoins }) => {
                         Нацыганить
                     </a>
                     <Modal
-                        style={{
-                            overlay: {
-                                backgroundColor: "rgba(0, 0, 0, 0.67)",
-                                color: "black",
-                            },
-                            content: {
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                borderRadius: "10px",
-                                background: "#fff",
-                                width: "496px",
-                                height: "240px",
-                                margin: "auto",
-                            },
-                        }}
+                        style={customStyleModal}
                         shouldCloseOnOverlayClick={false}
                         ariaHideApp={false}
-                        isOpen={modalIsOpen}
+                        isOpen={isModalOpen}
                         onRequestClose={closeModal}
                         portalClassName="modal"
                     >
