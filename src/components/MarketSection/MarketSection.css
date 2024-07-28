@@ -1,0 +1,14 @@
+.market_section {
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+}
+
+.market_section-title {
+    margin-bottom: 40px;
+}
+
+.components {
+    display: flex;
+    gap: 24px;
+}

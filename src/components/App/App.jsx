@@ -4,6 +4,7 @@ import "./App.css";
 import Header from "../Header/Header";
 import TitleSection from "../TitleSection/TitleSection";
 import WalletSection from "../WalletSection/WalletSection";
+import MarketSection from "../MarketSection/MarketSection";
 
 const App = () => {
     const [coins, setCoins] = useState(0);
@@ -13,6 +14,7 @@ const App = () => {
             <Header />
             <TitleSection />
             <WalletSection coins={coins} setCoins={setCoins} />
+            <MarketSection />
         </div>
     );
 };
