@@ -16,7 +16,7 @@
     margin-bottom: 24px;
 }
 
-.title {
+.wallet_section-title {
     font-size: 32px;
     font-weight: 600;
     line-height: 40px;
@@ -39,6 +39,10 @@
     font-weight: bold;
 }
 
+.block-change_coins {
+    height: 24px;
+}
+
 .button-add_coin {
     border-bottom: 1px solid #ff7f2280;
     text-decoration: none;
@@ -54,7 +58,12 @@
 
 .button-add_coin:active {
     color: #ff7f22;
-    border-bottom: 1px solid #ff7f22;
+    border: none;
+}
+
+.button-add_coin:disabled {
+    color: #4c5865;
+    border: none;
 }
 
 .block-change_coins {
@@ -68,25 +77,44 @@
     opacity: 0;
 }
 
-.coin_checkbox + label {
-    display: inline-flex;
-    align-items: center;
-    user-select: none;
-    cursor: pointer;
-}
-.coin_checkbox + label::before {
-    content: "";
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    border: 2px solid #a3b8cc;
-    margin-right: 12px;
-    background-repeat: no-repeat;
-    background-position: center center;
-}
+.coin_checkbox {
+    position: absolute;
+    opacity: 0;
 
-.coin_checkbox:checked + label::before {
-    background-image: url("./icons/ico_checked.svg");
+    & + label {
+        display: flex;
+        cursor: pointer;
+    }
+    & + label:before {
+        content: "";
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        border: 2px solid #a3b8cc;
+        margin-right: 12px;
+        background-repeat: no-repeat;
+        background-position: center center;
+
+        transition: 0.3s;
+    }
+
+    &:hover + label:before {
+        border: 2px solid #4c5865;
+    }
+
+    &:checked + label:before {
+        border: 2px solid #a3b8cc;
+        background-image: url("./icons/ico_checked.svg");
+    }
+
+    &:disabled + label {
+        color: #333940;
+        cursor: auto;
+    }
+
+    &:disabled + label:before {
+        border: 2px solid #333940;
+    }
 }
 
 .modal {

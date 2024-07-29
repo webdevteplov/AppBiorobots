@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import { useState } from "react";
 import "./WalletSection.css";
 import SectionNumber from "../SectionNumber/SectionNumber";
-import Coin from "../Coin/Coin";
+import Coin from "./Coin/Coin";
 import ico_coin_big from "./icons/ico_coin_big.svg";
 
 let left = -7; //css стили для картинок монет
@@ -122,7 +122,7 @@ const WalletSection = ({ coins, setCoins }) => {
                 <SectionNumber>02</SectionNumber>
             </div>
             <div className="wrapper-wallet_section">
-                <h2 className="title">Кошелёк криптовалют</h2>
+                <h2 className="wallet_section-title">Кошелёк криптовалют</h2>
                 <div className="coins">{coinsInWallet.map((coin) => coin)}</div>
 
                 <p className="count_coins">

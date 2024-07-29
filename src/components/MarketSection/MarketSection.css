@@ -5,6 +5,10 @@
 }
 
 .market_section-title {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 40px;
+
     margin-bottom: 40px;
 }
 
