@@ -1,7 +1,7 @@
 import React from "react";
 import "./ButtonInstallComponent.css";
 
-const ButtonInastallComponent = ({ buyComponent, isInstallButtonDisabled }) => {
+const ButtonInstallComponent = ({ buyComponent, isInstallButtonDisabled }) => {
     return (
         <button
             disabled={isInstallButtonDisabled}
@@ -13,4 +13,4 @@ const ButtonInastallComponent = ({ buyComponent, isInstallButtonDisabled }) => {
     );
 };
 
-export default ButtonInastallComponent;
+export default ButtonInstallComponent;

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import "./BiorobotComponent.css";
-import ButtonInastallComponent from "./ButtonInstallComponent/ButtonInstallComponent";
+import ButtonInstallComponent from "./ButtonInstallComponent/ButtonInstallComponent";
 
 const BiorobotComponent = ({
     ico,
@@ -47,7 +47,7 @@ const BiorobotComponent = ({
             </div>
             <h3 className="component_title">{componentName}</h3>
             <p className="component_price">Стоимость: {price} монет</p>
-            <ButtonInastallComponent
+            <ButtonInstallComponent
                 isInstallButtonDisabled={isInstallButtonDisabled}
                 buyComponent={() => buyComponent(price)}
             />
