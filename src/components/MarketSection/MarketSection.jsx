@@ -6,7 +6,16 @@ import ico_microchip from "./icons/ico_microchip.svg";
 import ico_soul from "./icons/ico_soul.svg";
 import "./MarketSection.css";
 
-const MarketSection = () => {
+const MarketSection = ({
+    coins,
+    setCoins,
+    coinsInWallet,
+    setCoinsInWallet,
+    left,
+    setLeft,
+    zIndex,
+    setZIndex,
+}) => {
     return (
         <div className="market_section">
             <div className="wrapper-section_number">
@@ -19,16 +28,40 @@ const MarketSection = () => {
                         ico={ico_biohand}
                         componentName={"Биорука"}
                         price={7}
+                        coins={coins}
+                        setCoins={setCoins}
+                        coinsInWallet={coinsInWallet}
+                        setCoinsInWallet={setCoinsInWallet}
+                        left={left}
+                        setLeft={setLeft}
+                        zIndex={zIndex}
+                        setZIndex={setZIndex}
                     />
                     <BiorobotComponent
                         ico={ico_microchip}
                         componentName={"Микрочип"}
                         price={5}
+                        coins={coins}
+                        setCoins={setCoins}
+                        coinsInWallet={coinsInWallet}
+                        setCoinsInWallet={setCoinsInWallet}
+                        left={left}
+                        setLeft={setLeft}
+                        zIndex={zIndex}
+                        setZIndex={setZIndex}
                     />
                     <BiorobotComponent
                         ico={ico_soul}
                         componentName={"Душа"}
                         price={25}
+                        coins={coins}
+                        setCoins={setCoins}
+                        coinsInWallet={coinsInWallet}
+                        setCoinsInWallet={setCoinsInWallet}
+                        left={left}
+                        setLeft={setLeft}
+                        zIndex={zIndex}
+                        setZIndex={setZIndex}
                     />
                 </div>
             </div>

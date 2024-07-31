@@ -6,12 +6,17 @@ import SectionNumber from "../SectionNumber/SectionNumber";
 import Coin from "./Coin/Coin";
 import ico_coin_big from "./icons/ico_coin_big.svg";
 
-let left = -7; //css стили для картинок монет
-let zIndex = 0; //
-
-const WalletSection = ({ coins, setCoins }) => {
+const WalletSection = ({
+    coins,
+    setCoins,
+    coinsInWallet,
+    setCoinsInWallet,
+    left,
+    setLeft,
+    zIndex,
+    setZIndex,
+}) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [coinsInWallet, setCoinsInWallet] = useState([]);
     const [earnFiveCoinsCheckboxChecked, setEarnFiveCoinsCheckboxChecked] =
         useState(false);
     const [noanForCountCoins, setNoanForCountCoins] = useState("монет");
@@ -74,33 +79,40 @@ const WalletSection = ({ coins, setCoins }) => {
                 diffCoinsBetweenLimitedAndAllowed >= 5
                     ? 5
                     : diffCoinsBetweenLimitedAndAllowed;
+            let currentLeft = left;
+            let currentZIndex = zIndex;
 
             for (let i = 0; i < limitedCountCoins; i++) {
-                left += 7;
-                zIndex -= 1;
+                currentLeft += 7;
+                currentZIndex -= 1;
                 keyForCoin += 1;
 
-                const coin = (
-                    <Coin left={left} zIndex={zIndex} key={keyForCoin} />
+                coinsToAdd.push(
+                    <Coin
+                        left={currentLeft}
+                        zIndex={currentZIndex}
+                        key={keyForCoin}
+                    />
                 );
-
-                coinsToAdd.push(coin);
 
                 if (limitedCountCoins < 5) {
                     openModal();
                 }
             }
+            setLeft(currentLeft);
+            setZIndex(currentZIndex);
 
             setCoins(coins + limitedCountCoins);
             setCoinsInWallet([...coinsInWallet, ...coinsToAdd]);
         } else {
-            left += 7;
-            zIndex -= 1;
+            setLeft(left + 7);
+            setZIndex(zIndex - 1);
+
             setCoinsInWallet([
                 ...coinsInWallet,
                 <Coin
-                    left={left}
-                    zIndex={zIndex}
+                    left={left + 7}
+                    zIndex={zIndex - 1}
                     key={coinsInWallet.length + 1}
                 />,
             ]);
