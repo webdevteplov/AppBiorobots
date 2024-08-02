@@ -3,18 +3,23 @@ import Modal from "react-modal";
 import { useState } from "react";
 import "./WalletSection.css";
 import SectionNumber from "../SectionNumber/SectionNumber";
-import Coin from "../Coin/Coin";
+import Coin from "./Coin/Coin";
 import ico_coin_big from "./icons/ico_coin_big.svg";
 
-let left = -7; //css стили для картинок монет
-let zIndex = 0; //
-
-const WalletSection = ({ coins, setCoins }) => {
+const WalletSection = ({
+    coins,
+    setCoins,
+    coinsInWallet,
+    setCoinsInWallet,
+    left,
+    setLeft,
+    zIndex,
+    setZIndex,
+}) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [coinsInWallet, setCoinsInWallet] = useState([]);
-    const [earnFiveCoinsCheckboxChecked, setEarnFiveCoinsCheckboxChecked] =
+    const [isEarnFiveCoinsCheckboxChecked, setIsEarnFiveCoinsCheckboxChecked] =
         useState(false);
-    const [noanForCountCoins, setNoanForCountCoins] = useState("монет");
+    const [nounForCountCoins, setNounForCountCoins] = useState("монет");
 
     const customStyleModal = {
         overlay: {
@@ -34,10 +39,10 @@ const WalletSection = ({ coins, setCoins }) => {
     };
 
     const handleChange = () => {
-        setEarnFiveCoinsCheckboxChecked(!earnFiveCoinsCheckboxChecked);
+        setIsEarnFiveCoinsCheckboxChecked(!isEarnFiveCoinsCheckboxChecked);
     };
 
-    const getNoanForCoin = (number) => {
+    const getNounForCoin = (number) => {
         const one = "монета";
         const two = "монеты";
         const five = "монет";
@@ -66,7 +71,7 @@ const WalletSection = ({ coins, setCoins }) => {
             openModal();
             return;
         }
-        if (earnFiveCoinsCheckboxChecked) {
+        if (isEarnFiveCoinsCheckboxChecked) {
             const coinsToAdd = [];
             let keyForCoin = coinsInWallet.length;
             const diffCoinsBetweenLimitedAndAllowed = 100 - coins;
@@ -74,33 +79,40 @@ const WalletSection = ({ coins, setCoins }) => {
                 diffCoinsBetweenLimitedAndAllowed >= 5
                     ? 5
                     : diffCoinsBetweenLimitedAndAllowed;
+            let currentLeft = left;
+            let currentZIndex = zIndex;
 
             for (let i = 0; i < limitedCountCoins; i++) {
-                left += 7;
-                zIndex -= 1;
+                currentLeft += 7;
+                currentZIndex -= 1;
                 keyForCoin += 1;
 
-                const coin = (
-                    <Coin left={left} zIndex={zIndex} key={keyForCoin} />
+                coinsToAdd.push(
+                    <Coin
+                        left={currentLeft}
+                        zIndex={currentZIndex}
+                        key={keyForCoin}
+                    />
                 );
-
-                coinsToAdd.push(coin);
 
                 if (limitedCountCoins < 5) {
                     openModal();
                 }
             }
+            setLeft(currentLeft);
+            setZIndex(currentZIndex);
 
             setCoins(coins + limitedCountCoins);
             setCoinsInWallet([...coinsInWallet, ...coinsToAdd]);
         } else {
-            left += 7;
-            zIndex -= 1;
+            setLeft(left + 7);
+            setZIndex(zIndex - 1);
+
             setCoinsInWallet([
                 ...coinsInWallet,
                 <Coin
-                    left={left}
-                    zIndex={zIndex}
+                    left={left + 7}
+                    zIndex={zIndex - 1}
                     key={coinsInWallet.length + 1}
                 />,
             ]);
@@ -122,11 +134,11 @@ const WalletSection = ({ coins, setCoins }) => {
                 <SectionNumber>02</SectionNumber>
             </div>
             <div className="wrapper-wallet_section">
-                <h2 className="title">Кошелёк криптовалют</h2>
+                <h2 className="wallet_section-title">Кошелёк криптовалют</h2>
                 <div className="coins">{coinsInWallet.map((coin) => coin)}</div>
 
                 <p className="count_coins">
-                    <span>{coins} </span> biorobo {getNoanForCoin(coins)}
+                    <span>{coins} </span> biorobo {getNounForCoin(coins)}
                 </p>
                 <div className="block-change_coins">
                     <a onClick={addCoin} className="button-add_coin" href="">
@@ -167,7 +179,7 @@ const WalletSection = ({ coins, setCoins }) => {
                     </Modal>
                     <input
                         onChange={handleChange}
-                        checked={earnFiveCoinsCheckboxChecked}
+                        checked={isEarnFiveCoinsCheckboxChecked}
                         type="checkbox"
                         className="coin_checkbox"
                         id="coin_checkbox"
