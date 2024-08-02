@@ -17,9 +17,9 @@ const WalletSection = ({
     setZIndex,
 }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [earnFiveCoinsCheckboxChecked, setEarnFiveCoinsCheckboxChecked] =
+    const [isEarnFiveCoinsCheckboxChecked, setIsEarnFiveCoinsCheckboxChecked] =
         useState(false);
-    const [noanForCountCoins, setNoanForCountCoins] = useState("монет");
+    const [nounForCountCoins, setNounForCountCoins] = useState("монет");
 
     const customStyleModal = {
         overlay: {
@@ -39,10 +39,10 @@ const WalletSection = ({
     };
 
     const handleChange = () => {
-        setEarnFiveCoinsCheckboxChecked(!earnFiveCoinsCheckboxChecked);
+        setIsEarnFiveCoinsCheckboxChecked(!isEarnFiveCoinsCheckboxChecked);
     };
 
-    const getNoanForCoin = (number) => {
+    const getNounForCoin = (number) => {
         const one = "монета";
         const two = "монеты";
         const five = "монет";
@@ -71,7 +71,7 @@ const WalletSection = ({
             openModal();
             return;
         }
-        if (earnFiveCoinsCheckboxChecked) {
+        if (isEarnFiveCoinsCheckboxChecked) {
             const coinsToAdd = [];
             let keyForCoin = coinsInWallet.length;
             const diffCoinsBetweenLimitedAndAllowed = 100 - coins;
@@ -138,7 +138,7 @@ const WalletSection = ({
                 <div className="coins">{coinsInWallet.map((coin) => coin)}</div>
 
                 <p className="count_coins">
-                    <span>{coins} </span> biorobo {getNoanForCoin(coins)}
+                    <span>{coins} </span> biorobo {getNounForCoin(coins)}
                 </p>
                 <div className="block-change_coins">
                     <a onClick={addCoin} className="button-add_coin" href="">
@@ -179,7 +179,7 @@ const WalletSection = ({
                     </Modal>
                     <input
                         onChange={handleChange}
-                        checked={earnFiveCoinsCheckboxChecked}
+                        checked={isEarnFiveCoinsCheckboxChecked}
                         type="checkbox"
                         className="coin_checkbox"
                         id="coin_checkbox"

@@ -26,7 +26,7 @@ const MarketSection = ({
                 <div className="components">
                     <BiorobotComponent
                         ico={ico_biohand}
-                        componentName={"Биорука"}
+                        componentName="Биорука"
                         price={7}
                         coins={coins}
                         setCoins={setCoins}
@@ -39,7 +39,7 @@ const MarketSection = ({
                     />
                     <BiorobotComponent
                         ico={ico_microchip}
-                        componentName={"Микрочип"}
+                        componentName="Микрочип"
                         price={5}
                         coins={coins}
                         setCoins={setCoins}
@@ -52,7 +52,7 @@ const MarketSection = ({
                     />
                     <BiorobotComponent
                         ico={ico_soul}
-                        componentName={"Душа"}
+                        componentName="Душа"
                         price={25}
                         coins={coins}
                         setCoins={setCoins}
