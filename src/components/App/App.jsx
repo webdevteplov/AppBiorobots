@@ -5,6 +5,7 @@ import Header from "../Header/Header";
 import TitleSection from "../TitleSection/TitleSection";
 import WalletSection from "../WalletSection/WalletSection";
 import MarketSection from "../MarketSection/MarketSection";
+import WarehouseSection from "../WarehouseSection/WarehouseSection";
 
 const App = () => {
     const [coins, setCoins] = useState(0);
@@ -36,6 +37,7 @@ const App = () => {
                 zIndex={zIndex}
                 setZIndex={setZIndex}
             />
+            <WarehouseSection />
         </div>
     );
 };

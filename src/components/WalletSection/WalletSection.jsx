@@ -19,7 +19,6 @@ const WalletSection = ({
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isEarnFiveCoinsCheckboxChecked, setIsEarnFiveCoinsCheckboxChecked] =
         useState(false);
-    const [nounForCountCoins, setNounForCountCoins] = useState("монет");
 
     const customStyleModal = {
         overlay: {
