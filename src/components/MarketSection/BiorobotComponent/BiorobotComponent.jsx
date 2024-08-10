@@ -14,6 +14,8 @@ const BiorobotComponent = ({
     setLeft,
     zIndex,
     setZIndex,
+    countComponents,
+    setCountComponents,
 }) => {
     const [isInstallButtonDisabled, setIsInstallButtonDisabled] =
         useState(true);
@@ -37,6 +39,8 @@ const BiorobotComponent = ({
 
         setCoins(coins - price);
         setCoinsInWallet(coinsInWallet.slice(0, lastCoin));
+
+        setCountComponents(countComponents + 1);
     };
 
     return (

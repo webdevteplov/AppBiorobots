@@ -3,20 +3,15 @@ import Modal from "react-modal";
 import { useState } from "react";
 import "./WalletSection.css";
 import SectionNumber from "../SectionNumber/SectionNumber";
-import Coin from "./Coin/Coin";
 import ico_coin_big from "./icons/ico_coin_big.svg";
 
 const WalletSection = ({
     coins,
-    setCoins,
     coinsInWallet,
-    setCoinsInWallet,
-    left,
-    setLeft,
-    zIndex,
-    setZIndex,
+    addCoin,
+    isModalOpen,
+    closeModal,
 }) => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
     const [isEarnFiveCoinsCheckboxChecked, setIsEarnFiveCoinsCheckboxChecked] =
         useState(false);
 
@@ -63,68 +58,14 @@ const WalletSection = ({
         return five;
     };
 
-    const addCoin = (event) => {
+    const addCoinsInWallet = (event) => {
         event.preventDefault();
 
-        if (coins >= 100) {
-            openModal();
-            return;
-        }
         if (isEarnFiveCoinsCheckboxChecked) {
-            const coinsToAdd = [];
-            let keyForCoin = coinsInWallet.length;
-            const diffCoinsBetweenLimitedAndAllowed = 100 - coins;
-            let limitedCountCoins =
-                diffCoinsBetweenLimitedAndAllowed >= 5
-                    ? 5
-                    : diffCoinsBetweenLimitedAndAllowed;
-            let currentLeft = left;
-            let currentZIndex = zIndex;
-
-            for (let i = 0; i < limitedCountCoins; i++) {
-                currentLeft += 7;
-                currentZIndex -= 1;
-                keyForCoin += 1;
-
-                coinsToAdd.push(
-                    <Coin
-                        left={currentLeft}
-                        zIndex={currentZIndex}
-                        key={keyForCoin}
-                    />
-                );
-
-                if (limitedCountCoins < 5) {
-                    openModal();
-                }
-            }
-            setLeft(currentLeft);
-            setZIndex(currentZIndex);
-
-            setCoins(coins + limitedCountCoins);
-            setCoinsInWallet([...coinsInWallet, ...coinsToAdd]);
+            addCoin(5);
         } else {
-            setLeft(left + 7);
-            setZIndex(zIndex - 1);
-
-            setCoinsInWallet([
-                ...coinsInWallet,
-                <Coin
-                    left={left + 7}
-                    zIndex={zIndex - 1}
-                    key={coinsInWallet.length + 1}
-                />,
-            ]);
-            setCoins(coins + 1);
+            addCoin(1);
         }
-    };
-
-    const openModal = () => {
-        setIsModalOpen(true);
-    };
-
-    const closeModal = () => {
-        setIsModalOpen(false);
     };
 
     return (
@@ -140,7 +81,12 @@ const WalletSection = ({
                     <span>{coins} </span> biorobo {getNounForCoin(coins)}
                 </p>
                 <div className="block-change_coins">
-                    <a onClick={addCoin} className="button-add_coin" href="">
+                    <a
+                        onClick={addCoinsInWallet}
+                        className={`button-add_coin ${
+                            coins == 100 ? "button-add_coin--disabled" : null
+                        }`}
+                    >
                         Нацыганить
                     </a>
                     <Modal
@@ -182,6 +128,7 @@ const WalletSection = ({
                         type="checkbox"
                         className="coin_checkbox"
                         id="coin_checkbox"
+                        disabled={coins == 100}
                     />
                     <label htmlFor="coin_checkbox">Цыганить по 5 монет</label>
                 </div>
