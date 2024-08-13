@@ -1,0 +1,39 @@
+.button-sell_component {
+    border: 2px solid #22b3e3;
+    background-color: rgba(28, 28, 28, 0);
+    padding: 12px 81.5px 12px 81.5px;
+    border-radius: 60px;
+    box-shadow: 0px 8px 10px 0px #00000029;
+    cursor: pointer;
+
+    border: linear-gradient(90deg, #22b3e3 0%, #7cdaf9 52.6%, #22b3e3 100%);
+
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: center;
+    color: #22b3e3;
+
+    transition: 0.3s;
+}
+
+.button-sell_component:hover {
+    background-color: #7cdaf9;
+    box-shadow: 0px 10px 40px 0px #1e5466;
+    border: 2px solid #7cdaf9;
+    color: #212529;
+}
+
+.button-sell_component:active {
+    background-color: rgba(28, 28, 28, 0);
+    border: 2px solid #22b3e3;
+    color: #7cdaf9;
+    box-shadow: none;
+}
+
+.button-sell_component:disabled {
+    background-color: rgba(28, 28, 28, 0);
+    border: 2px solid #4c5865;
+    color: #4c5865;
+    pointer-events: none;
+}

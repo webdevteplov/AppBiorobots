@@ -6,6 +6,10 @@ import ico_microchip from "./icons/ico_microchip.svg";
 import ico_soul from "./icons/ico_soul.svg";
 import "./MarketSection.css";
 
+const PRICE_BIOHANDS = 7;
+const PRICE_MICROCHIPS = 5;
+const PRICE_SOULS = 25;
+
 const MarketSection = ({
     coins,
     setCoins,
@@ -15,6 +19,12 @@ const MarketSection = ({
     setLeft,
     zIndex,
     setZIndex,
+    countBiohands,
+    setCountBiohands,
+    countMicrochips,
+    setCountMicrochips,
+    countSouls,
+    setCountSouls,
 }) => {
     return (
         <div className="market_section">
@@ -27,7 +37,7 @@ const MarketSection = ({
                     <BiorobotComponent
                         ico={ico_biohand}
                         componentName="Биорука"
-                        price={7}
+                        price={PRICE_BIOHANDS}
                         coins={coins}
                         setCoins={setCoins}
                         coinsInWallet={coinsInWallet}
@@ -36,11 +46,13 @@ const MarketSection = ({
                         setLeft={setLeft}
                         zIndex={zIndex}
                         setZIndex={setZIndex}
+                        countComponents={countBiohands}
+                        setCountComponents={setCountBiohands}
                     />
                     <BiorobotComponent
                         ico={ico_microchip}
                         componentName="Микрочип"
-                        price={5}
+                        price={PRICE_MICROCHIPS}
                         coins={coins}
                         setCoins={setCoins}
                         coinsInWallet={coinsInWallet}
@@ -49,11 +61,13 @@ const MarketSection = ({
                         setLeft={setLeft}
                         zIndex={zIndex}
                         setZIndex={setZIndex}
+                        countComponents={countMicrochips}
+                        setCountComponents={setCountMicrochips}
                     />
                     <BiorobotComponent
                         ico={ico_soul}
                         componentName="Душа"
-                        price={25}
+                        price={PRICE_SOULS}
                         coins={coins}
                         setCoins={setCoins}
                         coinsInWallet={coinsInWallet}
@@ -62,6 +76,8 @@ const MarketSection = ({
                         setLeft={setLeft}
                         zIndex={zIndex}
                         setZIndex={setZIndex}
+                        countComponents={countSouls}
+                        setCountComponents={setCountSouls}
                     />
                 </div>
             </div>
