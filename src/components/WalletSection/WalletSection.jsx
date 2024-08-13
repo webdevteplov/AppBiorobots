@@ -1,6 +1,5 @@
-import React from "react";
 import Modal from "react-modal";
-import { useState } from "react";
+import React, { useState } from "react";
 import "./WalletSection.css";
 import SectionNumber from "../SectionNumber/SectionNumber";
 import ico_coin_big from "./icons/ico_coin_big.svg";
@@ -61,11 +60,7 @@ const WalletSection = ({
     const addCoinsInWallet = (event) => {
         event.preventDefault();
 
-        if (isEarnFiveCoinsCheckboxChecked) {
-            addCoin(5);
-        } else {
-            addCoin(1);
-        }
+        addCoin(isEarnFiveCoinsCheckboxChecked ? 5 : 1);
     };
 
     return (

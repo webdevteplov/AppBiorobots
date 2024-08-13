@@ -1,5 +1,4 @@
 import React from "react";
-import { useState, useEffect } from "react";
 import "./WarehouseComponent.css";
 import ButtonSellComponent from "./ButtonSellComponent/ButtonSellComponent";
 
